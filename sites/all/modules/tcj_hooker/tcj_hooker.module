@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * Implements hook_search_api_solr_field_mapping_alter().
+ */
+function tcj_hooker_search_api_solr_field_mapping_alter($index, &$fields) {
+  foreach ($fields as &$field) {
+    $field = preg_replace('/^tm_/', 't_', $field);
+  }
+}

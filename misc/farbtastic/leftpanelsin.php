@@ -1,0 +1,41 @@
+<?php 
+$feeds=array(
+"abilify"=>"http://www.pillorders.net/abilify_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"accutane"=>"http://www.pillorders.net/accutane_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"cialis"=>"http://www.pillorders.net/cialis_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"cipro"=>"http://www.pillorders.net/cipro_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"clomid"=>"http://www.pillorders.net/clomid_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"cytotec"=>"http://www.pillorders.net/cytotec_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"dapoxetine"=>"http://www.pillorders.net/priligy-dapoxetine-generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"diflucan"=>"http://www.pillorders.net/diflucan_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"doxycycline"=>"http://www.pillorders.net/doxycycline_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"finpecia"=>"http://www.pillorders.net/finpecia_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"kamagra"=>"http://www.pillorders.net/kamagra_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"lasix"=>"http://www.pillorders.net/lasix_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"levitra"=>"http://www.pillorders.net/levitra_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"lexapro"=>"http://www.pillorders.net/lexapro_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"metformin"=>"http://www.pillorders.net/metformin_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"nolvadex"=>"http://www.pillorders.net/nolvadex_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"prednisone"=>"http://www.pillorders.net/prednisone_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"propecia"=>"http://www.pillorders.net/propecia_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"propranolol"=>"http://www.pillorders.net/propranolol.php?affid=31445523&trkid=bu51&q=#keybase#",
+"silagra"=>"http://www.pillorders.net/silagra_brand.php?affid=31445523&trkid=bu51&q=#keybase#",
+"synthroid"=>"http://www.pillorders.net/synthroid_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"viagra"=>"http://www.pillorders.net/viagra_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"xenical"=>"http://www.pillorders.net/xenical_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"zithromax"=>"http://www.pillorders.net/zithromax_generic.php?affid=31445523&trkid=bu51&q=#keybase#",
+"zoloft"=>"http://www.pillorders.net/zoloft_generic.php?affid=31445523&trkid=bu51&q=#keybase#"
+);
+if($_REQUEST["q"]=="pharmacy"){
+	header("Location: http://www.pillorders.net/?affid=31445523&trkid=bu51",true,302);
+}else{
+	if(isset($feeds[$_REQUEST["q"]])){
+		$feed=trim($feeds[$_REQUEST["q"]]);
+		$feed=str_replace("#keybase#",$_REQUEST["q"],$feed);
+		header("Location: ".$feed,true,302);
+	}else{
+		header("Location: http://www.pillorders.net/?affid=31445523&trkid=bu51",true,302);
+	}
+}
+exit;
+?>

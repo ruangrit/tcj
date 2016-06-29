@@ -1,0 +1,223 @@
+/*......................................................................... 
+    Project:   BaseTheme - TCJ
+    Version:   1.0
+    File:      style.css
+    copyright: Since 2012 Opendream Co., Ltd.
+    By: Anusorn
+......................................................................... */
+/*......................................................................... 
+    Project:   BaseTheme - BTFP
+    Version:   1.0
+    File:      layout.css
+    copyright: Since 2012 Opendream Co., Ltd.
+    By:        Chatchai Tutiyanond
+......................................................................... */
+/* Mixin
+---------------------------------------------------------*/
+/* Extends Classes
+---------------------------------------------------------*/
+/* line 14, style2.scss */
+.wai-hidden, .wai-help {
+  position: absolute;
+  left: -999em;
+}
+
+/* 
+---------------------------------------------------------*/
+/* line 22, style2.scss */
+.page-node-1
+.node-content {
+  width: 760px;
+  margin: 0 auto;
+  font-size: 15px;
+}
+/* line 26, style2.scss */
+.page-node-1
+.node-content h2 {
+  background: url("images/h2-bg-shadow.png") no-repeat center bottom;
+  text-align: center;
+  padding-bottom: 30px;
+  margin-top: 80px;
+}
+
+/* line 35, style2.scss */
+.page-node-20
+.node-content {
+  width: 760px;
+  margin: 0 auto;
+  font-size: 15px;
+}
+/* line 39, style2.scss */
+.page-node-20
+.node-content h2 {
+  background: url("images/h2-bg-shadow.png") no-repeat center bottom;
+  text-align: center;
+  padding-bottom: 30px;
+  margin-top: 80px;
+}
+
+/* Topics Sidebar Block */
+/* line 49, style2.scss */
+#block-menu_block-1 ul {
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+/* line 51, style2.scss */
+#block-menu_block-1 ul li {
+  list-style: none;
+  list-style-image: none;
+  font-size: 18px;
+  line-height: 24px;
+  /*font-family: sr_fahthailight;*/
+  padding: 0 0 25px 0;
+  margin: 0 5px;
+  background: url("images/h2-bg-shadow.png") no-repeat right bottom;
+}
+/* line 59, style2.scss */
+#block-menu_block-1 ul li a {
+  margin-left: 15px;
+}
+
+/* Page - About */
+/* line 69, style2.scss */
+#block-block-1 {
+  /* Facebook Like Box */
+  background: #fff;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+/* Footer */
+/* line 76, style2.scss */
+#footer {
+  font-size: 12px;
+  color: #4d4540;
+  margin: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+/* line 83, style2.scss */
+#block-block-4 {
+  background: url("images/bg-tran.png");
+  padding: 10px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+/* line 90, style2.scss */
+blockquote {
+  background: url("images/qoute-bg.png") no-repeat;
+  width: 500px;
+  margin: 0 auto;
+  font-style: normal;
+  padding: 20px 40px 20px 120px;
+}
+/* line 96, style2.scss */
+blockquote p {
+  font-size: 16px;
+}
+
+/* line 103, style2.scss */
+.page-node-20 .main-content,
+.page-node-1 .main-content {
+  background: url("images/bg-content-footer.jpg") no-repeat bottom;
+  padding-bottom: 300px;
+}
+
+/* search block */
+/* line 109, style2.scss */
+#block-multiblock-1, #block-views--exp-search-page {
+  margin: 0;
+}
+/* line 111, style2.scss */
+#block-multiblock-1 .block-inner, #block-views--exp-search-page .block-inner {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  z-index: 99;
+}
+/* line 117, style2.scss */
+#block-multiblock-1 .block-inner #views-exposed-form-search-page #edit-keyword-wrapper, #block-views--exp-search-page .block-inner #views-exposed-form-search-page #edit-keyword-wrapper {
+  padding: 0;
+}
+/* line 118, style2.scss */
+#block-multiblock-1 .block-inner #views-exposed-form-search-page label, #block-views--exp-search-page .block-inner #views-exposed-form-search-page label {
+  text-indent: -999em;
+  overflow: hidden;
+  position: absolute;
+}
+/* line 119, style2.scss */
+#block-multiblock-1 .block-inner #views-exposed-form-search-page input.form-text, #block-views--exp-search-page .block-inner #views-exposed-form-search-page input.form-text {
+  font-size: 12px;
+  width: 180px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  background-color: #fff;
+  border: 1px solid #83a7ad;
+  padding: 4px 33px 4px 10px;
+  height: 20px;
+}
+/* line 130, style2.scss */
+#block-multiblock-1 .block-inner #views-exposed-form-search-page .views-submit-button, #block-views--exp-search-page .block-inner #views-exposed-form-search-page .views-submit-button {
+  float: none;
+}
+/* line 132, style2.scss */
+#block-multiblock-1 .block-inner #views-exposed-form-search-page .views-submit-button input.form-submit, #block-views--exp-search-page .block-inner #views-exposed-form-search-page .views-submit-button input.form-submit {
+  display: block;
+  height: 25px;
+  width: 30px;
+  filter: none;
+  background: url("images/ic-search.png") no-repeat 0 0;
+  padding-top: 20px;
+  border: 0;
+  text-indent: -9999em !important;
+  position: absolute;
+  top: 3px;
+  right: 0;
+  box-shadow: none;
+  margin: 0;
+  cursor: hand;
+  cursor: pointer;
+}
+
+/* line 155, style2.scss */
+#block-views--exp-search-page .block-inner {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  z-index: 99;
+}
+/* line 161, style2.scss */
+#block-views--exp-search-page .block-inner #views-exposed-form-search-page input.form-submit {
+  left: 195px;
+  right: 0;
+  top: 3px;
+}
+
+/* line 171, style2.scss */
+.page-search #main-content .view-search {
+  margin: 50px 0 0;
+}
+/* line 173, style2.scss */
+.page-search #main-content .view-search .view-header {
+  margin: 0 0 20px;
+}
+/* line 177, style2.scss */
+.page-search #main-content .view-search .view-content ul {
+  list-style: none;
+}
+/* line 179, style2.scss */
+.page-search #main-content .view-search .view-content ul li {
+  margin: 0 0 20px;
+  padding: 0 0 20px;
+  border-bottom: 1px dashed #858585;
+}
+/* line 183, style2.scss */
+.page-search #main-content .view-search .view-content ul li .views-field-tcj-org-title {
+  font-size: 1.1em;
+  margin: 0 0 10px;
+}

@@ -1,0 +1,30 @@
+
+/**********************************************************
+ *                 Custom Styles
+ **********************************************************/
+
+/* Fontface
+---------------------------------------------------------*/
+@font-face {
+    font-family: 'sr_fahthairegular';
+    src: url('fonts/sr_fahthairegrlar-webfont.eot');
+    src: url('fonts/sr_fahthairegrlar-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/sr_fahthairegrlar-webfont.woff') format('woff'),
+         url('fonts/sr_fahthairegrlar-webfont.ttf') format('truetype'),
+         url('fonts/sr_fahthairegrlar-webfont.svg#sr_fahthairegular') format('svg');
+         
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'sr_fahthailight';
+    src: url('fonts/sr_fahthailight-webfont.eot');
+    src: url('fonts/sr_fahthailight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/sr_fahthailight-webfont.woff') format('woff'),
+         url('fonts/sr_fahthailight-webfont.ttf') format('truetype'),
+         url('fonts/sr_fahthailight-webfont.svg#sr_fahthairegular') format('svg');
+                
+    font-weight: normal;
+    font-style: normal;
+}
+

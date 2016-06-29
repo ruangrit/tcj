@@ -1,0 +1,105 @@
+
+/**********************************************************
+ *                 Custom Styles
+ **********************************************************/
+/**
+ * Here you can add custom stles for your theme that do not fit
+ * into one if the modular stylesheets.
+ */
+
+/* Workaround for Admin menu bar shadow */
+html body.admin-menu {
+  margin-top:45px !important;
+}
+
+
+
+.theme-default .nivo-controlNav {
+	bottom: -50px !important;
+}
+
+
+.views-nivo-slider-view .nivo-caption h2 {
+	font: 48px/1em sr_fahthailight !important;
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+
+/* Change fronpage slide font-size
+.views-nivo-slider-view .nivo-caption .description {
+	font: 15px/1.8em Helvetica, Arial, sans-serif !important;
+	letter-spacing: 0;
+	font-weight: normal;
+	margin-top: 10px;
+}
+*/
+
+.theme-default .nivo-controlNav {
+	right: 250px !important;
+}
+
+#block-block-3 .block-content ul{
+	margin: 0;	
+}
+
+#block-block-3 .block-content ul li {
+	margin: 0;
+	list-style: none;
+	clear: both;
+}
+
+#block-block-3 .block-content img{
+	float: left;
+	margin: 0 20px 20px 0;
+}
+
+/*#block-block-3 .block-content ul li {
+	padding: 0 0 0 80px;
+	margin: 0;
+	list-style: none;
+	height: 60px;
+}
+#block-block-3 .block-content ul {
+	padding: 0;
+	margin: 0;
+}
+#block-block-3 ul li.topic-1 {
+	background: url('images/topic-1.png') no-repeat;
+}
+#block-block-3 ul li.topic-2 {
+	background: url('images/topic-2.png') no-repeat;
+}
+#block-block-3 ul li.topic-3 {
+	background: url('images/topic-3.png') no-repeat;
+}
+#block-block-3 ul li.topic-4 {
+	background: url('images/topic-4.png') no-repeat;
+}*/
+
+
+.know-front .views-row{
+	margin: 0 0 10px 20px;
+	padding: 0 0 10px;
+	border-bottom: 1px dotted #999;
+}
+
+#block-tagclouds-1 .tagclouds-term{
+	float: left;
+	margin: 0 5px 7px 5px;
+	padding: 2px 5px;
+	color: #fff;
+	border: 1px solid #777;
+	background: #999;
+}
+#block-tagclouds-1 .tagclouds-term a{
+	color: #fff;
+	font-size: 12px;
+}
+
+#block-tagclouds-1 .more-link{
+	clear: both;
+}
+#block-tagclouds-1 .more-link a{
+	float: right;
+	padding: 0;
+}
