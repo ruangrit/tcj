@@ -19,6 +19,7 @@ class views_plugin_style_jump_menu extends views_plugin_style {
     $options['text'] = array('default' => 'Go', 'translatable' => TRUE);
     $options['label'] = array('default' => '', 'translatable' => TRUE);
     $options['choose'] = array('default' => '- Choose -', 'translatable' => TRUE);
+    $options['inline'] = array('default' => TRUE, 'bool' => TRUE);
     $options['default_value'] = array('default' => FALSE, 'bool' => TRUE);
 
     return $options;
@@ -83,6 +84,12 @@ class views_plugin_style_jump_menu extends views_plugin_style {
       '#description' => t('The text that will appear as the selected option in the jump menu.'),
     );
 
+    $form['inline'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Set this field to display inline'),
+      '#default_value' => !empty($this->options['inline']),
+    );
+
     $form['default_value'] = array(
       '#type' => 'checkbox',
       '#title' => t('Select the current contextual filter value'),
@@ -135,8 +142,17 @@ class views_plugin_style_jump_menu extends views_plugin_style {
     unset($this->view->row_index);
 
     $default_value = '';
-    if ($this->options['default_value'] && !empty($paths[url($_GET['q'])])) {
-      $default_value = $paths[url($_GET['q'])];
+    if ($this->options['default_value']) {
+      $lookup_options = array();
+      // We need to check if the path is absolute
+      // or else language is not taken in account.
+      if ($this->view->display[$this->view->current_display]->display_options['fields'][$this->options['path']]['absolute']) {
+        $lookup_options['absolute'] = TRUE;
+      }
+      $lookup_url = url($_GET['q'], $lookup_options);
+      if (!empty($paths[$lookup_url])) {
+        $default_value = $paths[$lookup_url];
+      }
     }
 
     ctools_include('jump-menu');
@@ -145,6 +161,7 @@ class views_plugin_style_jump_menu extends views_plugin_style {
       'button' => $this->options['text'],
       'title' => $this->options['label'],
       'choose' => $this->options['choose'],
+      'inline' => $this->options['inline'],
       'default_value' => $default_value,
     );
 

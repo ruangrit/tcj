@@ -408,7 +408,7 @@ function views_ui_add_form($form, &$form_state) {
  */
 function views_element_validate_integer($element, &$form_state) {
   $value = $element['#value'];
-  if ($value !== '' && (!is_numeric($value) || intval($value) != $value)) {
+  if ($value !== '' && (!is_numeric($value) || intval($value) != $value || abs($value) != $value)) {
     form_error($element, t('%name must be a positive integer.', array('%name' => $element['#title'])));
   }
 }
@@ -835,10 +835,10 @@ function theme_views_ui_view_info($variables) {
   }
 
   $output = '';
-  $output .= '<div class="views-ui-view-title">' . $title . "</div>\n";
+  $output .= '<div class="views-ui-view-title">' . check_plain($title) . "</div>\n";
   $output .= '<div class="views-ui-view-displays">' . $displays . "</div>\n";
   $output .= '<div class="views-ui-view-storage">' . $type . "</div>\n";
-  $output .= '<div class="views-ui-view-base">' . t('Type') . ': ' . $variables['base']. "</div>\n";
+  $output .= '<div class="views-ui-view-base">' . t('Type') . ': ' . check_plain($variables['base']). "</div>\n";
   return $output;
 }
 
@@ -855,9 +855,6 @@ function views_ui_break_lock_confirm($form, &$form_state, $view) {
   }
 
   $cancel = 'admin/structure/views/view/' . $view->name . '/edit';
-  if (!empty($_REQUEST['cancel'])) {
-    $cancel = $_REQUEST['cancel'];
-  }
 
   $account = user_load($view->locked->uid);
   return confirm_form($form,
@@ -2214,7 +2211,7 @@ function views_ui_edit_form_get_bucket($type, $view, $display) {
   switch ($type) {
     case 'filter':
       $rearrange_url = "admin/structure/views/nojs/rearrange-$type/$view->name/$display->id/$type";
-      $rearrange_text = t('and/or, rearrange');
+      $rearrange_text = t('And/Or, Rearrange');
       // TODO: Add another class to have another symbol for filter rearrange.
       $class = 'icon compact rearrange';
       break;
@@ -2233,7 +2230,7 @@ function views_ui_edit_form_get_bucket($type, $view, $display) {
 
     default:
       $rearrange_url = "admin/structure/views/nojs/rearrange/$view->name/$display->id/$type";
-      $rearrange_text = t('rearrange');
+      $rearrange_text = t('Rearrange');
       $class = 'icon compact rearrange';
   }
 
@@ -2241,16 +2238,16 @@ function views_ui_edit_form_get_bucket($type, $view, $display) {
   $actions = array();
   $count_handlers = count($display->handler->get_handlers($type));
   $actions['add'] = array(
-    'title' => t('add'),
+    'title' => t('Add'),
     'href' => "admin/structure/views/nojs/add-item/$view->name/$display->id/$type",
-    'attributes'=> array('class' => array('icon compact add', 'views-ajax-link'), 'title' => t('add'), 'id' => 'views-add-' . $type),
+    'attributes'=> array('class' => array('icon compact add', 'views-ajax-link'), 'title' => t('Add'), 'id' => 'views-add-' . $type),
     'html' => TRUE,
   );
   if ($count_handlers > 0) {
     $actions['rearrange'] = array(
       'title' => $rearrange_text,
       'href' => $rearrange_url,
-      'attributes' => array('class' => array($class, 'views-ajax-link'), 'title' => $rearrange_text, 'id' => 'views-rearrange-' . $type),
+      'attributes' => array('class' => array($class, 'views-ajax-link'), 'title' => t('Rearrange'), 'id' => 'views-rearrange-' . $type),
       'html' => TRUE,
     );
   }
@@ -2964,7 +2961,7 @@ function views_ui_ajax_form($js, $key, $view, $display_id = '') {
     else {
       $output = array();
       $output[] = views_ajax_command_dismiss_form();
-      $output[] = views_ajax_command_show_buttons();
+      $output[] = views_ajax_command_show_buttons(!empty($view->changed));
       $output[] = views_ajax_command_trigger_preview();
       if (!empty($form_state['#page_title'])) {
         $output[] = views_ajax_command_replace_title($form_state['#page_title']);
@@ -3038,7 +3035,7 @@ function views_ui_reorder_displays_form($form, &$form_state) {
 
   foreach ($view->display as $display) {
     $form[$display->id] = array(
-      'title'  => array('#markup' => $display->display_title),
+      'title'  => array('#markup' => check_plain($display->display_title)),
       'weight' => array(
         '#type' => 'weight',
         '#value' => $display->position,
@@ -4122,8 +4119,8 @@ function views_ui_add_item_form($form, &$form_state) {
         $zebra_class = ($zebra % 2) ? 'odd' : 'even';
         $form['options']['name'][$key] = array(
           '#type' => 'checkbox',
-          '#title' => t('!group: !field', array('!group' => $option['group'], '!field' => $option['title'])),
-          '#description' => $option['help'],
+          '#title' => t('!group: !field', array('!group' => check_plain($option['group']), '!field' => check_plain($option['title']))),
+          '#description' => filter_xss_admin($option['help']),
           '#return_value' => $key,
           '#prefix' => "<div class='$zebra_class filterable-option'>",
           '#suffix' => '</div>',
@@ -4964,6 +4961,13 @@ function views_ui_admin_settings_advanced() {
     '#description' => t('Select a translation method to use for Views data like header, footer, and empty text.'),
   );
 
+  $form['locale']['views_localize_all'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use same translation method for exported views'),
+    '#description' => t('Exported views will use Core translation by default. Enable this to always use the configured translation method.'),
+    '#default_value' => variable_get('views_localize_all', FALSE),
+  );
+
   $regions = array();
   $regions['watchdog'] = t('Watchdog');
   if (module_exists('devel')) {
@@ -5047,7 +5051,7 @@ function views_ui_autocomplete_tag($string = '') {
   $views = views_get_all_views();
   foreach ($views as $view) {
     if (!empty($view->tag) && strpos($view->tag, $string) === 0) {
-      $matches[$view->tag] = $view->tag;
+      $matches[$view->tag] = check_plain($view->tag);
       if (count($matches) >= 10) {
         break;
       }
@@ -5267,7 +5271,7 @@ function theme_views_ui_style_plugin_table($variables) {
   $rows = array();
   foreach (element_children($form['columns']) as $id) {
     $row = array();
-    $row[] = drupal_render($form['info'][$id]['name']);
+    $row[] = check_plain(drupal_render($form['info'][$id]['name']));
     $row[] = drupal_render($form['columns'][$id]);
     $row[] = drupal_render($form['info'][$id]['align']);
     $row[] = drupal_render($form['info'][$id]['separator']);
