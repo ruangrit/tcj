@@ -8,3 +8,21 @@ function tcj_hooker_search_api_solr_field_mapping_alter($index, &$fields) {
     $field = preg_replace('/^tm_/', 't_', $field);
   }
 }
+
+function tcj_hooker_node_presave($node) {
+  if ($node->type == 'knowledge') {
+    $tid = $node->field_data_type['und'][0]['tid'];
+    if ($tid == 183 || $tid == 184) {
+      $node->path['pathauto'] = 0;
+      $last_id = db_query('SELECT MAX(nid) FROM {node}')->fetchField();
+      $last_id++;
+      if ($tid == 183) {
+        $cate_path = 'news';
+      }
+      else {
+        $cate_path = 'blog';
+      }
+      $node->path['alias'] = $cate_path.'/view/'.$last_id;
+    }
+  }
+}
